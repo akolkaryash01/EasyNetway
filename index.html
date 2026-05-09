@@ -933,7 +933,7 @@
 </div>
 
 <script>
-const PROBE_TIMEOUT_MS = 6000;
+const PROBE_TIMEOUT_MS = 1000;
 const RETRY_ON_OFFLINE = 1;
 let currentFilter = 'all';
 let allExpanded = true;
@@ -1081,7 +1081,7 @@ async function checkDeviceWithRetry(url) {
   for (let i = 0; i <= RETRY_ON_OFFLINE; i++) {
     const ok = await checkDevice_triple(url);
     if (ok) return true;
-    if (i < RETRY_ON_OFFLINE) await new Promise(r => setTimeout(r, 1500));
+    if (i < RETRY_ON_OFFLINE) await new Promise(r => setTimeout(r, 500));
   }
   return false;
 }
@@ -1149,7 +1149,7 @@ function showToast(msg, color) {
 }
 
 window.addEventListener('load', () => {
-  setTimeout(checkAllDevices, 800);
+  setTimeout(checkAllDevices, 0);
   setInterval(checkAllDevices, 45000);
   document.querySelectorAll('.card').forEach(card => {
     card.addEventListener('touchstart', function(e) {
